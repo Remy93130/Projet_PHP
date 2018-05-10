@@ -76,4 +76,55 @@ class AdminManager extends Manager {
 		$req = $db->query( $sql );
 		return $req;
 	}
+
+	public function addBook( $data ) {
+		$db = $this->dbConnect();
+		$sql = 'INSERT INTO production (dispo, rangement, Titre, Theme, abrege, Nuedit)
+				VALUES (1, :pos, :title, :theme, :abr, :editor)';
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':pos'    => $data['pos'],
+			':title'  => $data['title'],
+			':theme'  => $data['theme'],
+			':abr'    => $data['abr'],
+			':editor' => $data['editor']));
+
+		if ( $data['type'] == 'nonperio' ) {
+			$sql = 'INSERT INTO non_periodique
+					VALUES (:nvol, :nbvol, :year, :isbn, 
+						(SELECT idProduit FROM production ORDER BY idProduit DESC LIMIT 1 ))';
+			$req = $db->prepare( $sql );
+			$req->execute(array(
+				':nvol'  => $data['nvol'],
+				':nbvol' => $data['nbvol'],
+				':year'  => $data['year'],
+				':isbn'  => $data['isbn']));
+		} elseif ( $data['type'] == 'perio' ) {
+			if ( empty( $data['pend'] ) ) {
+				$sql = 'INSERT INTO periodique
+						VALUES (:start, NULL, :timep, 
+							(SELECT idProduit FROM production ORDER BY idProduit DESC LIMIT 1 ))';
+				$req = $db->prepare( $sql );
+				$req->execute(array(
+					':start' => $data['start'],
+					':timep' => $data['timep']));
+			} else {
+				$sql = 'INSERT INTO periodique
+						VALUES (:start, :pend, :timep, 
+							(SELECT idProduit FROM production ORDER BY idProduit DESC LIMIT 1 ))';
+				$req = $db->prepare( $sql );
+				$req->execute(array(
+					':start' => $data['start'],
+					':pend'  => $data['pend'],
+					':timep' => $data['timep']));
+			}
+		} elseif ( $data['type'] == 'ouvrage') {
+			$sql = 'INSERT INTO ouvrage
+					VALUES (:aut, 
+						(SELECT idProduit FROM production ORDER BY idProduit DESC LIMIT 1 ))';
+			$req = $db->prepare( $sql );
+			$req->execute(array(
+				':aut' => $data['aut']));
+		}
+	}
 }

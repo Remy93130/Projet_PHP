@@ -26,7 +26,9 @@ try {
 		} elseif ( $_GET['action'] == 'addMotMat' ) {
 			addMotMat( $_POST );
 		} elseif ( $_GET['action'] == 'insertBook' ) {
-			require_once 'view/insertBookView.php';
+			insertBook( $_POST );
+		} elseif ($_GET['action'] == 'addBook') {
+			addBook( $_POST );
 		} else {
 			index();
 		}

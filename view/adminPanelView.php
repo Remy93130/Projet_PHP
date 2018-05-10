@@ -88,7 +88,7 @@ ob_start();
 	</div>
 	<div id="livre">
 		<h1>Ajouter un livre</h1><br>
-		<form>
+		<form method="post" action="index.php?action=insertBook">
 			<label for="motmat">Mot Matière :</label>
 			<select class="form-control" name="motmat">
 				<?php while ($data = $dataMotMat->fetch()): ?>
@@ -106,7 +106,9 @@ ob_start();
 				<?php while ($data = $dataEditor->fetch()): ?>
 				<option value="<?= $data['0'] ?>"><?= $data['1'] ?></option>
 				<?php endwhile ?>
-			</select>
+			</select><br>
+			<button class="btn btn-success" type="submit">Suivant</button>
+			<button class="btn btn-danger" type="reset" style="margin-left: 5%">Réinitialiser</button>
 		</form>
 	</div>
 	<div id="retard">

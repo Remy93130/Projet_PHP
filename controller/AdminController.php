@@ -47,6 +47,20 @@ function addMotMat( $data ) {
 	header('Location: index.php?action=loginAdmin');
 }
 
-function insertBook() {
-	
+function insertBook( $data ) {
+	if (!isset( $data['title'] )) {
+		header('Location: index.php?action=loginAdmin');
+	} else {
+		require_once 'view/insertBookView.php';
+	}
+}
+
+function addBook( $data ) {
+	if (!isset( $data['title'] ) && !isset( $data['type'] ) ) {
+		header('Location: index.php?action=loginAdmin');
+	} else {
+		$manager = new AdminManager();
+		$manager->addBook( $data );
+		header('Location: index.php?action=loginAdmin');
+	}
 }
