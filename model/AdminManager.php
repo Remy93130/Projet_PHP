@@ -127,4 +127,45 @@ class AdminManager extends Manager {
 				':aut' => $data['aut']));
 		}
 	}
+
+	public function addStudent( $data )	{
+		$db = $this->dbConnect();
+		$this->addUser( $data );
+		$sql = 'INSERT INTO etudiant VALUES (:city, :name, :cursus, :cp, :surname, :rue, 
+					(SELECT numero FROM adherent ORDER BY numero DESC LIMIT 1))';
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':city'    => $data['city'],
+			':name'    => $data['name'],
+			':cursus'  => $data['cursus'],
+			':cp'      => $data['cp'],
+			':surname' => $data['prenom'],
+			':rue'     => $data['rue']));
+	}
+
+	public function addTeacher( $data )	{
+		$db = $this->dbConnect();
+		$this->addUser( $data );
+		$sql = 'INSERT INTO enseignant VALUES (:city, :name, :cp, :surname, :rue, :phone,
+					(SELECT numero FROM adherent ORDER BY numero DESC LIMIT 1))';
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':city'    => $data['city'],
+			':name'    => $data['name'],
+			':cp'      => $data['cp'],
+			':surname' => $data['prenom'],
+			':rue'     => $data['rue'],
+			':phone'   => $data['tel']));
+	}
+
+	private function addUser( $data ) {
+		$pwd = sha1( $data['pwd'] );
+		$db = $this->dbConnect();
+		$sql = 'INSERT INTO adherent (annInscrip, login, pwd)
+				VALUES (YEAR(CURRENT_DATE), :login, :pwd)';
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':login' => $data['login'],
+			':pwd'   => $pwd ));
+	}
 }

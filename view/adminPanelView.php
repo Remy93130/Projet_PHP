@@ -8,8 +8,7 @@ ob_start();
 		<div class="row">
 			<div class="col-sm-6">
 				<h3>Ajout d'un étudiant :</h3>
-				<form method="post" action="">
-					<input name="type" value="etudiant" hidden>
+				<form method="post" action="index.php?action=addStudent">
 					<label for="login">Login :</label>
 					<input class="form-control" type="text" name="login"><br>
 					<label for="pwd">Mot de passe provisoire :</label>
@@ -32,8 +31,7 @@ ob_start();
 			</div>
 			<div class="col-sm-6">
 				<h3>Ajout d'un professeur :</h3>
-				<form method="post" action="">
-					<input name="type" value="professeur" hidden>
+				<form method="post" action="index.php?action=addTeacher">
 					<label for="login">Login :</label>
 					<input class="form-control" type="text" name="login"><br>
 					<label for="pwd">Mot de passe provisoire :</label>

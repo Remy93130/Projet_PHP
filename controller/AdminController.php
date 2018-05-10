@@ -64,3 +64,19 @@ function addBook( $data ) {
 		header('Location: index.php?action=loginAdmin');
 	}
 }
+
+function addStudent( $data ) {
+	if ( isset( $data['cursus'] ) && isset( $data['login'] ) ) {
+		$manager = new AdminManager();
+		$manager->addStudent( $data );
+	}
+	header('Location: index.php?action=loginAdmin');
+}
+
+ function addTeacher( $data ) {
+ 	if ( isset( $data['tel'] ) && isset( $data['login'] ) ) {
+ 		$manager = new AdminManager();
+ 		$manager->addTeacher( $data );
+ 	}
+ 	header('Location: index.php?action=loginAdmin');
+ }

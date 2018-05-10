@@ -29,6 +29,10 @@ try {
 			insertBook( $_POST );
 		} elseif ($_GET['action'] == 'addBook') {
 			addBook( $_POST );
+		} elseif ($_GET['action'] == 'addStudent') {
+			addStudent( $_POST );
+		} elseif ($_GET['action'] == 'addTeacher') {
+			addTeacher( $_POST );
 		} else {
 			index();
 		}
