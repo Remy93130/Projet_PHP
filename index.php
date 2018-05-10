@@ -25,6 +25,8 @@ try {
 			addEditeur( $_POST );
 		} elseif ( $_GET['action'] == 'addMotMat' ) {
 			addMotMat( $_POST );
+		} elseif ( $_GET['action'] == 'insertBook' ) {
+			require_once 'view/insertBookView.php';
 		} else {
 			index();
 		}

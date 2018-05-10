@@ -54,7 +54,6 @@ class AdminManager extends Manager {
 	}
 
 	public function addMotMat( $abr, $mat )	{
-		echo "yo";
 		$abr = strtoupper( $abr );
 		$db = $this->dbConnect();
 		$sql = 'INSERT INTO matiere VALUES (:abr, :mat)';
@@ -62,5 +61,19 @@ class AdminManager extends Manager {
 		$req->execute(array(
 			':abr' => $abr,
 			':mat' => $mat));
+	}
+
+	public function getMotMat()	{
+		$db = $this->dbConnect();
+		$sql = 'SELECT * FROM matiere';
+		$req = $db->query( $sql );
+		return $req;
+	}
+
+	public function getEditor()	{
+		$db = $this->dbConnect();
+		$sql = 'SELECT Nuedit, NOMedit FROM editeur';
+		$req = $db->query( $sql );
+		return $req;
 	}
 }

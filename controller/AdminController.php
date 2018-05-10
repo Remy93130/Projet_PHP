@@ -7,6 +7,8 @@ function loginAdmin() {
 	if ( isset($_SESSION['admin'] ) ) {
 		$manager = new AdminManager();
 		$dataLate = $manager->getLate();
+		$dataMotMat = $manager->getMotMat();
+		$dataEditor = $manager->getEditor();
 		require_once 'view/adminPanelView.php';
 	} else {
 		require_once 'view/logAdminView.php';
@@ -43,4 +45,8 @@ function addMotMat( $data ) {
 		$manager->addMotMat( $data['abr'], $data['mat'] );
 	}
 	header('Location: index.php?action=loginAdmin');
+}
+
+function insertBook() {
+	
 }

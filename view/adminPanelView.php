@@ -87,7 +87,27 @@ ob_start();
 		</form>
 	</div>
 	<div id="livre">
-		<h1>Ajouter un livre</h1>
+		<h1>Ajouter un livre</h1><br>
+		<form>
+			<label for="motmat">Mot Matière :</label>
+			<select class="form-control" name="motmat">
+				<?php while ($data = $dataMotMat->fetch()): ?>
+				<option value="<?= $data['0'] ?>"><?= $data['1'] ?></option>
+				<?php endwhile ?>
+			</select><br>
+			<label for="pos">Rangement du livre :</label>
+			<input class="form-control" type="text" name="pos"><br>
+			<label for="title">Titre du livre :</label>
+			<input class="form-control" type="text" name="title"><br>
+			<label for="theme">Thème du livre :</label>
+			<input class="form-control" type="text" name="theme"><br>
+			<label for="editor">Editeur du livre :</label>
+			<select class="form-control" name="editor">
+				<?php while ($data = $dataEditor->fetch()): ?>
+				<option value="<?= $data['0'] ?>"><?= $data['1'] ?></option>
+				<?php endwhile ?>
+			</select>
+		</form>
 	</div>
 	<div id="retard">
 		<h1>Les retards sur les rendus de production :</h1>
