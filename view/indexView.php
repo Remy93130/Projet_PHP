@@ -26,7 +26,7 @@ if ( isset( $strError ) ) { ?>
 		</div>
 <?php } ?>
 
-<h1 class="text-center">Acceuil</h1>
+<h1 class="text-center">Accueil</h1>
 
 </div>
 

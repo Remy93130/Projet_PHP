@@ -3,6 +3,7 @@
 require_once 'controller/BasicController.php';
 require_once 'controller/UserController.php';
 require_once 'controller/AdminController.php';
+require_once 'controller/SearchController.php';
 
 try {
 	session_start();
@@ -27,11 +28,13 @@ try {
 			addMotMat( $_POST );
 		} elseif ( $_GET['action'] == 'insertBook' ) {
 			insertBook( $_POST );
-		} elseif ($_GET['action'] == 'addBook') {
+		} elseif ( $_GET['action'] == 'addBook' ) {
 			addBook( $_POST );
-		} elseif ($_GET['action'] == 'addStudent') {
+		} elseif ( $_GET['action'] == 'addStudent' ) {
 			addStudent( $_POST );
-		} elseif ($_GET['action'] == 'addTeacher') {
+		} elseif ( $_GET['action'] == 'searchBook' ) {
+			searchBook();
+		} elseif ( $_GET['action'] == 'addTeacher' ) {
 			addTeacher( $_POST );
 		} else {
 			index();

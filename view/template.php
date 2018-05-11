@@ -19,10 +19,7 @@
 				<a class="nav-link" href="index.php">Accueil <i class="fas fa-home"></i></a>
 			</li>
 			<li>
-				<a class="nav-link" href="#">Rechercher un livre <i class="fas fa-search"></i></a>
-			</li>
-			<li>
-				<a class="nav-link" href="#">A propos <i class="fas fa-info-circle"></i></a>
+				<a class="nav-link" href="index.php?action=searchBook">Rechercher un livre <i class="fas fa-search"></i></a>
 			</li>
 			<li>
 				<a class="nav-link" href="index.php?action=loginAdmin">Espace Administration</a>
