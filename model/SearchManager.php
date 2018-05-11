@@ -5,18 +5,18 @@ require_once 'model/Manager.php';
 class SearchManager extends Manager {
 
 	public function getPerio( $data ) {
-		# code...
+		$db = $this->dbConnect();
 	}
 
 	public function getNonPerio( $data ) {
-		# code...
+		$db = $this->dbConnect();
 	}
 
 	public function getOuvrage( $data )	{
-		# code...
+		$db = $this->dbConnect();
 	}
 
 	private function getProduction( $data )	{
-		# code...
+		$db = $this->dbConnect();
 	}
 }

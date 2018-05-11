@@ -32,10 +32,12 @@ try {
 			addBook( $_POST );
 		} elseif ( $_GET['action'] == 'addStudent' ) {
 			addStudent( $_POST );
+		} elseif ($_GET['action'] == 'resultBook') {
+			resultBook( $_POST );
 		} elseif ( $_GET['action'] == 'searchBook' ) {
 			searchBook();
 		} elseif ( $_GET['action'] == 'addTeacher' ) {
-			addTeacher( $_POST );
+			addTeacher( $_POST, $_GET );
 		} else {
 			index();
 		}

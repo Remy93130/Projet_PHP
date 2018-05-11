@@ -8,7 +8,8 @@ ob_start();
 	<div class="row">
 		<div class="col-lg-8 offset-lg-2">
 			<h2>Rechercher un périodique</h2><br>
-			<form action="" method="post">
+			<form action="index.php?action=resultBook&choice=perio" method="post">
+				<input name="validForm" hidden>
 				<label for="title">Titre :</label>
 				<input class="form-control" type="text" name="title"><br>
 				<label for="theme">Thème :</label>
@@ -28,7 +29,8 @@ ob_start();
 	<div class="row">
 		<div class="col-lg-8 offset-lg-2">
 			<h2>Rechercher un ouvrage</h2><br>
-			<form action="" method="post">
+			<form action="index.php?action=resultBook&choice=ouvrage" method="post">
+				<input name="validForm" hidden>
 				<label for="title">Titre :</label>
 				<input class="form-control" type="text" name="title"><br>
 				<label for="theme">Thème :</label>
@@ -48,7 +50,8 @@ ob_start();
 	<div class="row" style="margin-bottom: 3%">
 		<div class="col-lg-8 offset-lg-2">
 			<h2>Rechercher une œuvre non périodique</h2>
-			<form action="" method="post">
+			<form action="index.php?action=resultBook&choice=nonperio" method="post">
+				<input name="validForm" hidden>
 				<label for="title">Titre :</label>
 				<input class="form-control" type="text" name="title"><br>
 				<label for="theme">Thème :</label>
