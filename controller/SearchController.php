@@ -12,11 +12,12 @@ function resultBook( $data, $choice ) {
 		header('Location: index.php?action=searchBook');
 	}
 	$manager = new SearchManager();
-	if ( $choice == 'perio' ) {
+	if ( $choice['choice'] == 'perio' ) {
 		$dataBook = $manager->getPerio( $data );
-	} elseif ( $choice == 'nonperio' ) {
+	} elseif ( $choice['choice'] == 'nonperio' ) {
 		$dataBook = $manager->getNonPerio( $data );
-	} elseif ( $choice == 'ouvrage' ) {
+	} elseif ( $choice['choice'] == 'ouvrage' ) {
 		$dataBook = $manager->getOuvrage( $data );
 	}
+	require_once 'view/resultBookView.php';
 }

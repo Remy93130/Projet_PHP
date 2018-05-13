@@ -33,7 +33,7 @@ try {
 		} elseif ( $_GET['action'] == 'addStudent' ) {
 			addStudent( $_POST );
 		} elseif ($_GET['action'] == 'resultBook') {
-			resultBook( $_POST );
+			resultBook( $_POST, $_GET );
 		} elseif ( $_GET['action'] == 'searchBook' ) {
 			searchBook();
 		} elseif ( $_GET['action'] == 'addTeacher' ) {
