@@ -50,6 +50,12 @@
 				<li class="nav-item">
 					<a class="js-scrollTo nav-link" href="#retard">Voir les retards</a>
 				</li>
+				<li class="nav-item">
+					<a class="js-scrollTo nav-link" href="#emprunt">Emprunt de livre</a>
+				</li>
+				<li class="nav-item">
+					<a class="js-scrollTo nav-link" href="#retour">Retour de livre</a>
+				</li>
 			</ul>
 			<a id="back" href="index.php">Retour au menu</a>
 		</nav>

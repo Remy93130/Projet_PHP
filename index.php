@@ -36,6 +36,10 @@ try {
 			resultBook( $_POST, $_GET );
 		} elseif ( $_GET['action'] == 'searchBook' ) {
 			searchBook();
+		} elseif ($_GET['action'] == 'lentBook') {
+			lentBook( $_POST );
+		} elseif ($_GET['action'] == 'bringBook') {
+			bringBook( $_POST );
 		} elseif ( $_GET['action'] == 'addTeacher' ) {
 			addTeacher( $_POST, $_GET );
 		} else {

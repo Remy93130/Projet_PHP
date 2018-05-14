@@ -9,6 +9,9 @@ function loginAdmin() {
 		$dataLate = $manager->getLate();
 		$dataMotMat = $manager->getMotMat();
 		$dataEditor = $manager->getEditor();
+		$dataUser = $manager->getAvailableUser();
+		$dataBook = $manager->getAvailableBook();
+		$dataUserBook = $manager->getUserWithBook();
 		require_once 'view/adminPanelView.php';
 	} else {
 		require_once 'view/logAdminView.php';
@@ -77,6 +80,22 @@ function addStudent( $data ) {
  	if ( isset( $data['tel'] ) && isset( $data['login'] ) ) {
  		$manager = new AdminManager();
  		$manager->addTeacher( $data );
+ 	}
+ 	header('Location: index.php?action=loginAdmin');
+ }
+
+ function lentBook( $data ) {
+ 	if ( isset( $data['user'] ) && isset( $data['book'] ) ) {
+ 		$manager = new AdminManager();
+ 		$manager->lentBook( $data );
+ 	}
+ 	header('Location: index.php?action=loginAdmin');
+ }
+
+ function bringBook( $data ) {
+ 	if ( isset( $data['user'] ) ) {
+ 		$manager = new AdminManager();
+ 		$manager->bringBook( $data );
  	}
  	header('Location: index.php?action=loginAdmin');
  }

@@ -128,6 +128,37 @@ ob_start();
 			</tbody>
 		</table>
 	</div>
+	<div id="emprunt">
+		<h1>Emprunt d'un livre</h1><br>
+		<form action="index.php?action=lentBook" method="post">
+			<label for="user">Adhérent</label>
+			<select class="form-control" name="user">
+				<?php while ( $data = $dataUser->fetch() ): ?>
+					<option value="<?= $data['0'] ?>"><?= $data['1'] ?></option>
+				<?php endwhile ?>
+			</select><br>
+			<label for="book">Ouvrage</label>
+			<select class="form-control" name="book">
+				<?php while ( $data = $dataBook->fetch() ): ?>
+					<option value="<?= $data['0'] ?>"><?= $data['1'] ?></option>
+				<?php endwhile ?>
+			</select><br>
+			<button class="btn btn-success" type="submit">Valider</button>
+			<button class="btn btn-danger" type="reset" style="margin-left: 5%">Réinitialiser</button>
+		</form>
+	</div>
+	<div id="retour">
+		<h1>Retour de livre</h1><br>
+		<form method="post" action="index.php?action=bringBook">
+			<label for="user">Login de la personne : </label>
+			<select class="form-control" name="user">
+				<?php while ( $data = $dataUserBook->fetch() ): ?>
+					<option value="<?= $data['0'] ?>"><?= $data['1'] ?></option>
+				<?php endwhile ?>
+			</select><br>
+			<button class="btn btn-success" type="submit">Valider</button>
+		</form>
+	</div>
 </div>
 <?php
 $content = ob_get_clean();

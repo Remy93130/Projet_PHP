@@ -77,6 +77,30 @@ class AdminManager extends Manager {
 		return $req;
 	}
 
+	public function getAvailableUser() {
+		$db = $this->dbConnect();
+		$sql  = 'SELECT numero, login FROM adherent 
+				 WHERE interdit IS NULL AND nombreEmprunt IS NULL ORDER BY login ASC';
+		$req = $db->query( $sql );
+		return $req;
+	}
+
+	public function getUserWithBook() {
+		$db = $this->dbConnect();
+		$sql  = 'SELECT numero, login FROM adherent 
+				 WHERE nombreEmprunt IS NOT NULL ORDER BY login ASC';
+		$req = $db->query( $sql );
+		return $req;	
+	}
+
+	public function getAvailableBook() {
+		$db = $this->dbConnect();
+		$sql = 'SELECT idProduit, Titre FROM production
+				WHERE dispo = 1 ORDER BY Titre ASC';
+		$req = $db->query( $sql );
+		return $req;
+	}
+
 	public function addBook( $data ) {
 		$db = $this->dbConnect();
 		$sql = 'INSERT INTO production (dispo, rangement, Titre, Theme, abrege, Nuedit)
@@ -167,5 +191,42 @@ class AdminManager extends Manager {
 		$req->execute(array(
 			':login' => $data['login'],
 			':pwd'   => $pwd ));
+	}
+
+	public function lentBook( $data ) {
+		$db = $this->dbConnect();
+		$sql = 'UPDATE production
+				SET dispo = 0, numero = :numero
+				WHERE idProduit = :book';
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':numero' => $data['user'],
+			':book'   => $data['book']));
+		$sql = 'UPDATE adherent 
+				SET nombreEmprunt = 1, datPret = CURRENT_DATE()
+				WHERE numero = :numero';
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':numero' => $data['user']));
+	}
+
+	public function bringBook( $data ) {
+		$db = $this->dbConnect();
+		$sql = 'UPDATE adherent
+				SET nombreEmprunt = NULL
+				WHERE numero = :user';
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':user' => $data['user']));
+		$sql = 'UPDATE production 
+				SET dispo = 1, numero = NULL 
+				WHERE idProduit = 
+					(SELECT idProduit FROM 
+						(SELECT * FROM production) AS baguette 
+					WHERE numero = :user)';
+		echo "$sql";
+		$req = $db->prepare( $sql );
+		$req->execute(array(
+			':user' => $data['user']));
 	}
 }
